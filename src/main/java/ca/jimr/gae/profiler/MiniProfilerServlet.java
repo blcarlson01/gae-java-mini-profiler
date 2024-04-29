@@ -21,6 +21,7 @@
  */
 package ca.jimr.gae.profiler;
 
+import io.github.pixee.security.Newlines;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -149,7 +150,7 @@ public class MiniProfilerServlet extends HttpServlet
           Calendar c = Calendar.getInstance();
           c.add(Calendar.HOUR, resourceCacheHours);
           resp.setHeader("Cache-Control", "public, must-revalidate");
-          resp.setHeader("Expires", new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz").format(c.getTime()));
+          resp.setHeader("Expires", Newlines.stripAll(new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz").format(c.getTime())));
         } else
         {
           resp.setHeader("Cache-Control", "no-cache");
